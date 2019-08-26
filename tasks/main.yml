@@ -1,0 +1,18 @@
+---
+# tasks file for telegram_bot_service
+- name: Create and Activate env
+  shell: |
+    virtualenv mypython
+    source mypython/bin/activate
+
+- name: Install Python Packages
+  shell: pip install -r bot/pip-requirements.txt
+
+- name: Generate MAIN.PY file
+  template: dest={{ destin }} mode=0555
+
+- name: Start service
+  shell: |
+    systemctl daemon-reload
+    systemctl enable bot.service
+    systemctl start bot.service

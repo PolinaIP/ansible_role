@@ -1,0 +1,11 @@
+[Init]
+Description=TelegramBot
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/usr/bin/python {{ path }}
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
