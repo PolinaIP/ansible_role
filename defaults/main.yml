@@ -1,4 +1,4 @@
 ---
 # defaults file for telegram_bot_service
-path: /Users/vagifmamedov/ans/bot/main.py
-destin: /etc/bot.service
+path: /var/www/bot/main.py
+destin: /etc/systemd/system/bot.service
