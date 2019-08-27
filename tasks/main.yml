@@ -4,12 +4,19 @@
   shell: |
     virtualenv mypython
     source mypython/bin/activate
+    
+- name: Copy script files
+  copy: src={{ item }} dest={{ path }} mode=0555
+  loop: 
+    - "main.py"
+    - "config.py"
+    - "pip-requirements.txt"
 
 - name: Install Python Packages
-  shell: pip install -r bot/pip-requirements.txt
+  shell: pip install -r {{ path }}/pip-requirements.txt
 
 - name: Generate MAIN.PY file
-  template: dest={{ destin }} mode=0555
+  template: src=bot.service.j2 dest={{ destin }} mode=0555
 
 - name: Start service
   shell: |
